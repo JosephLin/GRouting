@@ -7,32 +7,130 @@
 //
 
 #import "ViewController.h"
+#import "Route.h"
 
-@interface ViewController ()
+static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json";
 
+
+@interface ViewController () <CLLocationManagerDelegate>
+@property (nonatomic, strong) CLLocationManager* locationManager;
+@property (nonatomic, strong) MKDirectionsRequest* currentRequest;
 @end
 
+
 @implementation ViewController
+@synthesize mapView;
+@synthesize locationManager, currentRequest;
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidAppear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)processRequest:(MKDirectionsRequest*)request;
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
+    self.currentRequest = request;
+
+    if ( [request.source isCurrentLocation] )
+    {
+        if ( !self.locationManager.location )
+        {
+            [self.locationManager startMonitoringSignificantLocationChanges];
+        }
+        else
+        {
+            [self findRouteFromLocation:self.locationManager.location toLocation:self.currentRequest.destination.placemark.location];
+        }
+    }
+    else
+    {
+        [self findRouteFromLocation:request.source.placemark.location toLocation:request.destination.placemark.location];
     }
 }
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    [self.locationManager stopMonitoringSignificantLocationChanges];
+    
+    if ( [self.currentRequest.source isCurrentLocation] )
+    {
+        [self findRouteFromLocation:self.locationManager.location toLocation:self.currentRequest.destination.placemark.location];
+    }
+}
+
+- (void)findRouteFromLocation:(CLLocation*)fromLocation toLocation:(CLLocation*)toLocation
+{
+    NSString* fromLatLon = [NSString stringWithFormat:@"%f,%f", fromLocation.coordinate.latitude, fromLocation.coordinate.longitude];
+    NSString* toLatLon = [NSString stringWithFormat:@"%f,%f", toLocation.coordinate.latitude, toLocation.coordinate.longitude];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            fromLatLon, @"origin",
+                            toLatLon, @"destination",
+                            @"false", @"sensor",
+                            @"transit", @"mode",
+                            nil];
+    
+    NSString* query = [self queryFromDictionary:params];
+    NSString* URLString = [NSString stringWithFormat:@"%@?%@", baseURL, query];
+    NSURL* URL = [NSURL URLWithString:URLString];
+    NSURLRequest* request = [NSURLRequest requestWithURL:URL];
+    
+    NSLog(@"Request URL: %@", URL);
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+//        NSLog(@"HTTP Response: %@", response);
+        if ( !error )
+        {
+            id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            [self processJSONResponse:object];
+        }
+    }];
+}
+
+- (void)processJSONResponse:(NSDictionary*)response
+{
+//    NSLog(@"Response: %@", response);
+
+    NSArray* routes = [response objectForKey:@"routes"];
+    
+    if ( [routes count] )
+    {
+        Route *route = [Route routeWithDictionary:[routes objectAtIndex:0]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self displayRoute:route];
+        });
+    }
+}
+
+- (void)displayRoute:(Route*)route
+{
+    self.mapView.region = route.bounds;
+    
+}
+
+
+
+- (NSString*)queryFromDictionary:(NSDictionary*)dict
+{
+    NSMutableArray* pairs = [NSMutableArray arrayWithCapacity:[dict count]];
+    
+    [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString* pair = [NSString stringWithFormat:@"%@=%@", key, obj];
+        [pairs addObject:pair];
+    }];
+    
+    NSString* query = [pairs componentsJoinedByString:@"&"];
+    return query;
+}
+
 
 @end

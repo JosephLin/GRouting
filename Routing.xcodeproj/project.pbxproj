@@ -16,6 +16,10 @@
 		7CBF07D215AE0D8800C33B92 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CBF07D015AE0D8800C33B92 /* MainStoryboard_iPhone.storyboard */; };
 		7CBF07D515AE0D8800C33B92 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CBF07D315AE0D8800C33B92 /* MainStoryboard_iPad.storyboard */; };
 		7CBF07D815AE0D8800C33B92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07D715AE0D8800C33B92 /* ViewController.m */; };
+		7CBF07DF15AE0FD100C33B92 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07DE15AE0FD100C33B92 /* MapKit.framework */; };
+		7CBF07E115AE25FF00C33B92 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07E015AE25FF00C33B92 /* CoreLocation.framework */; };
+		7CBF07E415AE292100C33B92 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07E315AE292100C33B92 /* Route.m */; };
+		7CBF07E715AE2CAC00C33B92 /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07E615AE2CAC00C33B92 /* Step.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,12 @@
 		7CBF07D415AE0D8800C33B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		7CBF07D615AE0D8800C33B92 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		7CBF07D715AE0D8800C33B92 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7CBF07DE15AE0FD100C33B92 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7CBF07E015AE25FF00C33B92 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7CBF07E215AE292100C33B92 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		7CBF07E315AE292100C33B92 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		7CBF07E515AE2CAC00C33B92 /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Step.h; sourceTree = "<group>"; };
+		7CBF07E615AE2CAC00C33B92 /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Step.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +50,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CBF07E115AE25FF00C33B92 /* CoreLocation.framework in Frameworks */,
+				7CBF07DF15AE0FD100C33B92 /* MapKit.framework in Frameworks */,
 				7CBF07BF15AE0D8800C33B92 /* UIKit.framework in Frameworks */,
 				7CBF07C115AE0D8800C33B92 /* Foundation.framework in Frameworks */,
 				7CBF07C315AE0D8800C33B92 /* CoreGraphics.framework in Frameworks */,
@@ -69,6 +81,8 @@
 		7CBF07BD15AE0D8800C33B92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CBF07E015AE25FF00C33B92 /* CoreLocation.framework */,
+				7CBF07DE15AE0FD100C33B92 /* MapKit.framework */,
 				7CBF07BE15AE0D8800C33B92 /* UIKit.framework */,
 				7CBF07C015AE0D8800C33B92 /* Foundation.framework */,
 				7CBF07C215AE0D8800C33B92 /* CoreGraphics.framework */,
@@ -85,6 +99,10 @@
 				7CBF07D315AE0D8800C33B92 /* MainStoryboard_iPad.storyboard */,
 				7CBF07D615AE0D8800C33B92 /* ViewController.h */,
 				7CBF07D715AE0D8800C33B92 /* ViewController.m */,
+				7CBF07E215AE292100C33B92 /* Route.h */,
+				7CBF07E315AE292100C33B92 /* Route.m */,
+				7CBF07E515AE2CAC00C33B92 /* Step.h */,
+				7CBF07E615AE2CAC00C33B92 /* Step.m */,
 				7CBF07C515AE0D8800C33B92 /* Supporting Files */,
 			);
 			path = Routing;
@@ -168,6 +186,8 @@
 				7CBF07CB15AE0D8800C33B92 /* main.m in Sources */,
 				7CBF07CF15AE0D8800C33B92 /* AppDelegate.m in Sources */,
 				7CBF07D815AE0D8800C33B92 /* ViewController.m in Sources */,
+				7CBF07E415AE292100C33B92 /* Route.m in Sources */,
+				7CBF07E715AE2CAC00C33B92 /* Step.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
