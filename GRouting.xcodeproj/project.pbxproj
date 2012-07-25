@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C30792A15C098B900D5DE36 /* PinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C30792915C098B900D5DE36 /* PinAnnotation.m */; };
 		7CBF07BF15AE0D8800C33B92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07BE15AE0D8800C33B92 /* UIKit.framework */; };
 		7CBF07C115AE0D8800C33B92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07C015AE0D8800C33B92 /* Foundation.framework */; };
 		7CBF07C315AE0D8800C33B92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07C215AE0D8800C33B92 /* CoreGraphics.framework */; };
@@ -23,14 +24,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C30792815C098B900D5DE36 /* PinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinAnnotation.h; sourceTree = "<group>"; };
+		7C30792915C098B900D5DE36 /* PinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinAnnotation.m; sourceTree = "<group>"; };
 		7CBF07BA15AE0D8800C33B92 /* GRouting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GRouting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CBF07BE15AE0D8800C33B92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7CBF07C015AE0D8800C33B92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7CBF07C215AE0D8800C33B92 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7CBF07C615AE0D8800C33B92 /* GRouting-Info.plist */ = {isa = PBXFileReference; path = "GRouting-Info.plist"; sourceTree = "<group>"; };
+		7CBF07C615AE0D8800C33B92 /* GRouting-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GRouting-Info.plist"; sourceTree = "<group>"; };
 		7CBF07C815AE0D8800C33B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7CBF07CA15AE0D8800C33B92 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7CBF07CC15AE0D8800C33B92 /* GRouting-Prefix.pch */ = {isa = PBXFileReference; path = "GRouting-Prefix.pch"; sourceTree = "<group>"; };
+		7CBF07CC15AE0D8800C33B92 /* GRouting-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GRouting-Prefix.pch"; sourceTree = "<group>"; };
 		7CBF07CD15AE0D8800C33B92 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7CBF07CE15AE0D8800C33B92 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7CBF07D115AE0D8800C33B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				7CBF07E315AE292100C33B92 /* Route.m */,
 				7CBF07E515AE2CAC00C33B92 /* Step.h */,
 				7CBF07E615AE2CAC00C33B92 /* Step.m */,
+				7C30792815C098B900D5DE36 /* PinAnnotation.h */,
+				7C30792915C098B900D5DE36 /* PinAnnotation.m */,
 				7CBF07C515AE0D8800C33B92 /* Supporting Files */,
 			);
 			path = Routing;
@@ -188,6 +193,7 @@
 				7CBF07D815AE0D8800C33B92 /* ViewController.m in Sources */,
 				7CBF07E415AE292100C33B92 /* Route.m in Sources */,
 				7CBF07E715AE2CAC00C33B92 /* Step.m in Sources */,
+				7C30792A15C098B900D5DE36 /* PinAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Route.h"
+#import "PinAnnotation.h"
 
 static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json";
 
@@ -114,7 +115,11 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
 - (void)displayRoute:(Route*)route
 {
     self.mapView.region = route.bounds;
+
+    PinAnnotation* annotation = [PinAnnotation new];
+    annotation.coordinate = route.startCoordinate;
     
+	[self.mapView addAnnotation:annotation];
 }
 
 
@@ -132,5 +137,17 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
     return query;
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation
+{
+    static NSString* pinReuseIdentifier = @"pinReuseIdentifier";
+    MKPinAnnotationView* pinAnnotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
+    pinAnnotationView.pinColor = MKPinAnnotationColorGreen;
+    return pinAnnotationView;
+}
+
+
+
 
 @end
+
+

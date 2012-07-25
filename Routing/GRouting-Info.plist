@@ -38,6 +38,7 @@
 	<key>MKDirectionsApplicationSupportedModes</key>
 	<array>
 		<string>MKDirectionsModeSubway</string>
+		<string>MKDirectionsModeBus</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard_iPhone</string>
