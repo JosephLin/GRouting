@@ -23,14 +23,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7CBF07BA15AE0D8800C33B92 /* Routing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Routing.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CBF07BA15AE0D8800C33B92 /* GRouting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GRouting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CBF07BE15AE0D8800C33B92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7CBF07C015AE0D8800C33B92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7CBF07C215AE0D8800C33B92 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7CBF07C615AE0D8800C33B92 /* Routing-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Routing-Info.plist"; sourceTree = "<group>"; };
+		7CBF07C615AE0D8800C33B92 /* GRouting-Info.plist */ = {isa = PBXFileReference; path = "GRouting-Info.plist"; sourceTree = "<group>"; };
 		7CBF07C815AE0D8800C33B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7CBF07CA15AE0D8800C33B92 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7CBF07CC15AE0D8800C33B92 /* Routing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Routing-Prefix.pch"; sourceTree = "<group>"; };
+		7CBF07CC15AE0D8800C33B92 /* GRouting-Prefix.pch */ = {isa = PBXFileReference; path = "GRouting-Prefix.pch"; sourceTree = "<group>"; };
 		7CBF07CD15AE0D8800C33B92 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7CBF07CE15AE0D8800C33B92 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7CBF07D115AE0D8800C33B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		7CBF07BB15AE0D8800C33B92 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7CBF07BA15AE0D8800C33B92 /* Routing.app */,
+				7CBF07BA15AE0D8800C33B92 /* GRouting.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,10 +111,10 @@
 		7CBF07C515AE0D8800C33B92 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7CBF07C615AE0D8800C33B92 /* Routing-Info.plist */,
+				7CBF07C615AE0D8800C33B92 /* GRouting-Info.plist */,
 				7CBF07C715AE0D8800C33B92 /* InfoPlist.strings */,
 				7CBF07CA15AE0D8800C33B92 /* main.m */,
-				7CBF07CC15AE0D8800C33B92 /* Routing-Prefix.pch */,
+				7CBF07CC15AE0D8800C33B92 /* GRouting-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -122,9 +122,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7CBF07B915AE0D8700C33B92 /* Routing */ = {
+		7CBF07B915AE0D8700C33B92 /* GRouting */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CBF07DB15AE0D8800C33B92 /* Build configuration list for PBXNativeTarget "Routing" */;
+			buildConfigurationList = 7CBF07DB15AE0D8800C33B92 /* Build configuration list for PBXNativeTarget "GRouting" */;
 			buildPhases = (
 				7CBF07B615AE0D8700C33B92 /* Sources */,
 				7CBF07B715AE0D8700C33B92 /* Frameworks */,
@@ -134,9 +134,9 @@
 			);
 			dependencies = (
 			);
-			name = Routing;
+			name = GRouting;
 			productName = Routing;
-			productReference = 7CBF07BA15AE0D8800C33B92 /* Routing.app */;
+			productReference = 7CBF07BA15AE0D8800C33B92 /* GRouting.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -148,7 +148,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Joseph Lin";
 			};
-			buildConfigurationList = 7CBF07B415AE0D8700C33B92 /* Build configuration list for PBXProject "Routing" */;
+			buildConfigurationList = 7CBF07B415AE0D8700C33B92 /* Build configuration list for PBXProject "GRouting" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -160,7 +160,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7CBF07B915AE0D8700C33B92 /* Routing */,
+				7CBF07B915AE0D8700C33B92 /* GRouting */,
 			);
 		};
 /* End PBXProject section */
@@ -272,9 +272,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Routing/Routing-Prefix.pch";
-				INFOPLIST_FILE = "Routing/Routing-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Routing/GRouting-Prefix.pch";
+				INFOPLIST_FILE = "Routing/GRouting-Info.plist";
+				PRODUCT_NAME = GRouting;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -283,9 +283,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Routing/Routing-Prefix.pch";
-				INFOPLIST_FILE = "Routing/Routing-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Routing/GRouting-Prefix.pch";
+				INFOPLIST_FILE = "Routing/GRouting-Info.plist";
+				PRODUCT_NAME = GRouting;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -293,7 +293,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7CBF07B415AE0D8700C33B92 /* Build configuration list for PBXProject "Routing" */ = {
+		7CBF07B415AE0D8700C33B92 /* Build configuration list for PBXProject "GRouting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CBF07D915AE0D8800C33B92 /* Debug */,
@@ -302,13 +302,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CBF07DB15AE0D8800C33B92 /* Build configuration list for PBXNativeTarget "Routing" */ = {
+		7CBF07DB15AE0D8800C33B92 /* Build configuration list for PBXNativeTarget "GRouting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CBF07DC15AE0D8800C33B92 /* Debug */,
 				7CBF07DD15AE0D8800C33B92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
