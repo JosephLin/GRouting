@@ -11,9 +11,7 @@
 
 @implementation Route
 
-@synthesize bounds, distance, duration;
-@synthesize departureTime, arrivalTime, startAddress, endAddress, startCoordinate, endCoordinate;
-@synthesize  steps;
+@synthesize bounds;
 
 
 
@@ -31,30 +29,8 @@
 
     route.bounds = [Route regionFromNECoordinate:NECoordinate SWCoordinate:SWCoordinate];
     
-    
-    NSDictionary* distance = [dict objectForKey:@"distance"];
-    route.distance = [[distance objectForKey:@"value"] doubleValue];
-    
-    NSDictionary* duration = [dict objectForKey:@"duration"];
-    route.duration = [[duration objectForKey:@"value"] doubleValue];
-    
-    NSDictionary* departure_time = [dict objectForKey:@"departure_time"];
-    route.departureTime = [NSDate dateWithTimeIntervalSinceReferenceDate:[[departure_time objectForKey:@"value"] doubleValue]];
-    
-    NSDictionary* arrival_time = [dict objectForKey:@"arrival_time"];
-    route.departureTime = [NSDate dateWithTimeIntervalSinceReferenceDate:[[arrival_time objectForKey:@"value"] doubleValue]];
-    
-    route.startAddress = [dict objectForKey:@"start_address"];
-    
-    route.endAddress = [dict objectForKey:@"end_address"];
 
-    NSDictionary* start_location = [dict objectForKey:@"start_location"];
-    route.startCoordinate = CLLocationCoordinate2DMake([[start_location objectForKey:@"lat"] doubleValue], [[start_location objectForKey:@"lng"] doubleValue]);
-    
-    NSDictionary* end_location = [dict objectForKey:@"end_location"];
-    route.endCoordinate = CLLocationCoordinate2DMake([[end_location objectForKey:@"lat"] doubleValue], [[end_location objectForKey:@"lng"] doubleValue]);
-
-    route.steps = [Step stepsWithArray:[dict objectForKey:@"steps"]];
+    route.legs = [Leg legsWithArray:[dict objectForKey:@"legs"]];
     
     return route;
 }

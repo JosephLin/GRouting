@@ -28,13 +28,13 @@
     step.startCoordinate = CLLocationCoordinate2DMake([[start_location objectForKey:@"lat"] doubleValue], [[start_location objectForKey:@"lng"] doubleValue]);
 
     NSDictionary* end_location = [dict objectForKey:@"end_location"];
-    step.startCoordinate = CLLocationCoordinate2DMake([[end_location objectForKey:@"lat"] doubleValue], [[end_location objectForKey:@"lng"] doubleValue]);
+    step.endCoordinate = CLLocationCoordinate2DMake([[end_location objectForKey:@"lat"] doubleValue], [[end_location objectForKey:@"lng"] doubleValue]);
 
     step.HTMLInstructions = [dict objectForKey:@"html_instructions"];
     
     step.travelMode = [dict objectForKey:@"travel_mode"];
     
-    step.steps = [Step stepsWithArray:[dict objectForKey:@"steps"]];
+//    step.steps = [Step stepsWithArray:[dict objectForKey:@"steps"]];
     
     return step;
 }

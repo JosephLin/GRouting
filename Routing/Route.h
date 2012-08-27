@@ -9,23 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-#import "Step.h"
+#import "Leg.h"
 
 
 @interface Route : NSObject
 
 @property (nonatomic) MKCoordinateRegion bounds;
-@property (nonatomic) double distance;
-@property (nonatomic) NSTimeInterval duration;
-
-@property (nonatomic, strong) NSDate* departureTime;
-@property (nonatomic, strong) NSDate* arrivalTime;
-@property (nonatomic, strong) NSString* startAddress;
-@property (nonatomic, strong) NSString* endAddress;
-@property (nonatomic) CLLocationCoordinate2D startCoordinate;
-@property (nonatomic) CLLocationCoordinate2D endCoordinate;
-
-@property (nonatomic, strong) NSArray* steps;
+@property (nonatomic, strong) NSArray* legs;
 
 + (Route*)routeWithDictionary:(NSDictionary*)dict;
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C30792A15C098B900D5DE36 /* PinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C30792915C098B900D5DE36 /* PinAnnotation.m */; };
+		7C3CF0FD15EBFC88003D9D44 /* Leg.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3CF0FC15EBFC88003D9D44 /* Leg.m */; };
 		7CBF07BF15AE0D8800C33B92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07BE15AE0D8800C33B92 /* UIKit.framework */; };
 		7CBF07C115AE0D8800C33B92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07C015AE0D8800C33B92 /* Foundation.framework */; };
 		7CBF07C315AE0D8800C33B92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07C215AE0D8800C33B92 /* CoreGraphics.framework */; };
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		7C30792815C098B900D5DE36 /* PinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinAnnotation.h; sourceTree = "<group>"; };
 		7C30792915C098B900D5DE36 /* PinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinAnnotation.m; sourceTree = "<group>"; };
+		7C3CF0FB15EBFC88003D9D44 /* Leg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leg.h; sourceTree = "<group>"; };
+		7C3CF0FC15EBFC88003D9D44 /* Leg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leg.m; sourceTree = "<group>"; };
 		7CBF07BA15AE0D8800C33B92 /* GRouting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GRouting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CBF07BE15AE0D8800C33B92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7CBF07C015AE0D8800C33B92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +107,8 @@
 				7CBF07D715AE0D8800C33B92 /* ViewController.m */,
 				7CBF07E215AE292100C33B92 /* Route.h */,
 				7CBF07E315AE292100C33B92 /* Route.m */,
+				7C3CF0FB15EBFC88003D9D44 /* Leg.h */,
+				7C3CF0FC15EBFC88003D9D44 /* Leg.m */,
 				7CBF07E515AE2CAC00C33B92 /* Step.h */,
 				7CBF07E615AE2CAC00C33B92 /* Step.m */,
 				7C30792815C098B900D5DE36 /* PinAnnotation.h */,
@@ -194,6 +199,7 @@
 				7CBF07E415AE292100C33B92 /* Route.m in Sources */,
 				7CBF07E715AE2CAC00C33B92 /* Step.m in Sources */,
 				7C30792A15C098B900D5DE36 /* PinAnnotation.m in Sources */,
+				7C3CF0FD15EBFC88003D9D44 /* Leg.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
