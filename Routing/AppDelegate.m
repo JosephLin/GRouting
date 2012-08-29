@@ -15,7 +15,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    if (!launchOptions)
+    {
+        if ( [self.window.rootViewController isMemberOfClass:[ViewController class]] )
+        {
+            [(ViewController*)self.window.rootViewController showLastRoute];
+        }
+    }
     return YES;
 }
 

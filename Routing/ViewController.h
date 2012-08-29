@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
+- (void)showLastRoute;
 - (void)processRequest:(MKDirectionsRequest*)request;
 
 @end

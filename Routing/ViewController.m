@@ -40,6 +40,17 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
     [super viewDidAppear:animated];
 }
 
+- (void)showLastRoute
+{
+    NSDictionary* dict = [NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]];
+    CLLocation* fromLocation = [dict objectForKey:@"fromLocation"];
+    CLLocation* toLocation = [dict objectForKey:@"toLocation"];
+    if ( fromLocation && toLocation )
+    {
+        [self findRouteFromLocation:fromLocation toLocation:toLocation];
+    }
+}
+
 - (void)processRequest:(MKDirectionsRequest*)request;
 {
     self.currentRequest = request;
@@ -73,6 +84,13 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
 
 - (void)findRouteFromLocation:(CLLocation*)fromLocation toLocation:(CLLocation*)toLocation
 {
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          fromLocation, @"fromLocation",
+                          toLocation, @"toLocation",
+                          nil];   
+    [NSKeyedArchiver archiveRootObject:dict toFile:[self archivePath]];
+
+
     NSString* fromLatLon = [NSString stringWithFormat:@"%f,%f", fromLocation.coordinate.latitude, fromLocation.coordinate.longitude];
     NSString* toLatLon = [NSString stringWithFormat:@"%f,%f", toLocation.coordinate.latitude, toLocation.coordinate.longitude];
     NSString* departureTime = [NSString stringWithFormat:@"%1.0f", [[NSDate date] timeIntervalSince1970]];
@@ -198,6 +216,13 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
     polylineView.lineWidth = 5.0;
     
     return polylineView;
+}
+
+- (NSString *)archivePath
+{
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *archivePath = [documentsDir stringByAppendingPathComponent:@"lastRoute.archive"];
+    return archivePath;
 }
 
 
