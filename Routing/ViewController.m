@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Route.h"
 #import "PinAnnotation.h"
+#import "MKPolyline+Decoding.h"
 
 #define kStartPointTitle    @"Start"
 #define kOtherPointTitle    @"Transfer"
@@ -142,13 +143,9 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
 
     NSArray* allSteps = [route valueForKeyPath:@"legs.@unionOfArrays.steps"];
 
-    CLLocationCoordinate2D coordinates[[allSteps count] + 1];
-
     for ( int i = 0; i < [allSteps count]; i++ )
     {
         Step* step = [allSteps objectAtIndex:i];
-
-        coordinates[i] = step.startCoordinate;
 
         PinAnnotation* annotation = [PinAnnotation new];
         annotation.coordinate = step.startCoordinate;
@@ -156,20 +153,18 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
         annotation.subtitle = step.HTMLInstructions;
         [self.mapView addAnnotation:annotation];
 
+        MKPolyline *polyline = [MKPolyline polylineWithEncodedString:step.polylineString];
+        [self.mapView addOverlay:polyline];
+
         
         if (i == [allSteps count] - 1)
         {
-            coordinates[i + 1] = step.endCoordinate;
-
             PinAnnotation* annotation = [PinAnnotation new];
             annotation.coordinate = step.endCoordinate;
             annotation.title = kEndPointTitle;
             [self.mapView addAnnotation:annotation];
         }
     }
-    
-    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:[allSteps count] + 1];
-    [self.mapView addOverlay:polyline];
     
     NSLog(@"Annotations: %@", self.mapView.annotations);
 }

@@ -34,6 +34,8 @@
     
     step.travelMode = [dict objectForKey:@"travel_mode"];
     
+    step.polylineString = [[dict objectForKey:@"polyline"] objectForKey:@"points"];
+    
 //    step.steps = [Step stepsWithArray:[dict objectForKey:@"steps"]];
     
     return step;

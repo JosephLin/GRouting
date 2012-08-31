@@ -18,6 +18,7 @@
 @property (nonatomic) CLLocationCoordinate2D endCoordinate;
 @property (nonatomic, strong) NSString* HTMLInstructions;
 @property (nonatomic, strong) NSString* travelMode;
+@property (nonatomic, strong) NSString* polylineString;
 @property (nonatomic, strong) NSArray* steps;
 
 + (Step*)stepWithDictionary:(NSDictionary*)dict;
