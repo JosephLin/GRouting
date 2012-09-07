@@ -8,7 +8,8 @@
 
 #import "ViewController.h"
 #import "Route.h"
-#import "PinAnnotation.h"
+#import "GRAnnotation.h"
+#import "GRAnnotationView.h"
 #import "MKPolyline+Decoding.h"
 #import "UIColor+Utilities.h"
 
@@ -162,9 +163,9 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
     {
         Step* step = [allSteps objectAtIndex:i];
 
-        PinAnnotation* annotation = [PinAnnotation new];
+        GRAnnotation* annotation = [GRAnnotation new];
         annotation.coordinate = step.startCoordinate;
-        annotation.type = (i == 0) ? PinAnnotationTypeStart : PinAnnotationTypeRegular;
+        annotation.type = (i == 0) ? GRAnnotationTypeStart : GRAnnotationTypeRegular;
 
         MKPolyline *polyline = [MKPolyline polylineWithEncodedString:step.polylineString];
         
@@ -172,6 +173,7 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
         {
             annotation.title = step.HTMLInstructions;
             annotation.subtitle = step.distanceString;
+            annotation.symbol = @"🚶";
         }
         else if ([step.travelMode isEqualToString:@"TRANSIT"])
         {
@@ -180,10 +182,42 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
             NSString* name = [[step.transitDetails objectForKey:@"line"] objectForKey:@"name"];
             NSString* fromStop = [[step.transitDetails objectForKey:@"departure_stop"] objectForKey:@"name"];
             NSString* toStop = [[step.transitDetails objectForKey:@"arrival_stop"] objectForKey:@"name"];
+            NSString* vehicleType = [[[step.transitDetails objectForKey:@"line"] objectForKey:@"vehicle"] objectForKey:@"type"];
             
-            annotation.title = [NSString stringWithFormat:@"%@ - %@", shortName, name];
+            if (name && shortName)
+            {
+                annotation.title = [NSString stringWithFormat:@"%@ - %@", shortName, name];
+            }
+            else if (name)
+            {
+                annotation.title = [NSString stringWithFormat:@"%@", name];
+            }
+            else if (shortName)
+            {
+                annotation.title = [NSString stringWithFormat:@"%@", shortName];
+            }
+            else
+            {
+                annotation.title = step.HTMLInstructions;
+            }
+
             annotation.subtitle = [NSString stringWithFormat:@"%@ to %@", fromStop, toStop];
-            polyline.title =colorCode;
+            
+            if ([vehicleType isEqualToString:@"BUS"])
+            {
+                annotation.symbol = @"🚌";
+            }
+            else if ([vehicleType isEqualToString:@"HEAVY_RAIL"])
+            {
+                annotation.symbol = @"🚉";
+            }
+            else
+            {
+                annotation.symbol = shortName;
+                annotation.symbolColorCode = colorCode;
+            }
+
+            polyline.title = colorCode;
         }
         else
         {
@@ -197,9 +231,9 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
         
         if (i == [allSteps count] - 1)
         {
-            PinAnnotation* annotation = [PinAnnotation new];
+            GRAnnotation* annotation = [GRAnnotation new];
             annotation.coordinate = step.endCoordinate;
-            annotation.type = PinAnnotationTypeEnd;
+            annotation.type = GRAnnotationTypeEnd;
             [self.mapView addAnnotation:annotation];
         }
     }
@@ -225,28 +259,35 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation
 {
     static NSString* pinReuseIdentifier = @"pinReuseIdentifier";
-    MKPinAnnotationView* pinAnnotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
-    pinAnnotationView.canShowCallout = YES;
-    
-    if ( [annotation isKindOfClass:[PinAnnotation class]])
+
+    switch ([(GRAnnotation*)annotation type])
     {
-        switch ([(PinAnnotation*)annotation type])
+        case GRAnnotationTypeStart:
         {
-            case PinAnnotationTypeStart:
-                pinAnnotationView.pinColor = MKPinAnnotationColorGreen;
-                break;
-                
-            case PinAnnotationTypeEnd:
-                pinAnnotationView.pinColor = MKPinAnnotationColorRed;
-                break;
-                
-            default:
-                pinAnnotationView.pinColor = MKPinAnnotationColorPurple;
-                break;
+            MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
+            annotationView.canShowCallout = YES;
+            annotationView.pinColor = MKPinAnnotationColorGreen;
+            return annotationView;
+        }
+            
+        case GRAnnotationTypeEnd:
+        {
+            MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
+            annotationView.canShowCallout = YES;
+            annotationView.pinColor = MKPinAnnotationColorRed;
+            return annotationView;
+        }
+            
+        default:
+        {
+            static NSString* reuseIdentifier = @"reuseIdentifier";
+            GRAnnotationView* annotationView = [[GRAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
+            annotationView.image = [UIImage imageNamed:@"annotation"];
+            annotationView.centerOffset = CGPointMake(0, -10);
+            annotationView.canShowCallout = YES;
+            return annotationView;
         }
     }
-
-    return pinAnnotationView;
 }
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay

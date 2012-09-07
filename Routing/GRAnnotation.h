@@ -10,17 +10,19 @@
 #import <MapKit/MapKit.h>
 
 typedef enum {
-    PinAnnotationTypeStart = 0,
-    PinAnnotationTypeRegular,
-    PinAnnotationTypeEnd,
-} PinAnnotationType;
+    GRAnnotationTypeStart = 0,
+    GRAnnotationTypeEnd,
+    GRAnnotationTypeRegular,
+} GRAnnotationType;
 
 
-@interface PinAnnotation : NSObject <MKAnnotation>
+@interface GRAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
-@property (nonatomic) PinAnnotationType type;
+@property (nonatomic) GRAnnotationType type;
+@property (nonatomic, strong) NSString *symbol;
+@property (nonatomic, strong) NSString *symbolColorCode;
 
 @end

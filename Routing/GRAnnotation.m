@@ -6,12 +6,9 @@
 //  Copyright (c) 2012 Joseph Lin. All rights reserved.
 //
 
-#import "PinAnnotation.h"
+#import "GRAnnotation.h"
 
 
-@implementation PinAnnotation
-
-@synthesize title, subtitle, coordinate;
-
+@implementation GRAnnotation
 
 @end

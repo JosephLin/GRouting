@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C30792A15C098B900D5DE36 /* PinAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C30792915C098B900D5DE36 /* PinAnnotation.m */; };
+		7C30792A15C098B900D5DE36 /* GRAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C30792915C098B900D5DE36 /* GRAnnotation.m */; };
 		7C3CF0FD15EBFC88003D9D44 /* Leg.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3CF0FC15EBFC88003D9D44 /* Leg.m */; };
 		7C8629F615F16F750088C2E8 /* MKPolyline+Decoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8629F515F16F750088C2E8 /* MKPolyline+Decoding.m */; };
 		7CBF07BF15AE0D8800C33B92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07BE15AE0D8800C33B92 /* UIKit.framework */; };
@@ -23,11 +23,14 @@
 		7CBF07E415AE292100C33B92 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07E315AE292100C33B92 /* Route.m */; };
 		7CBF07E715AE2CAC00C33B92 /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07E615AE2CAC00C33B92 /* Step.m */; };
 		7CD1929915FA694E00519A01 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD1929815FA694E00519A01 /* UIColor+Utilities.m */; };
+		7CD1953415FA7F5200519A01 /* annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD1953315FA7F5200519A01 /* annotation@2x.png */; };
+		7CD1953615FA7F7300519A01 /* annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD1953515FA7F7300519A01 /* annotation.png */; };
+		7CD1953B15FA81BB00519A01 /* GRAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD1953A15FA81BB00519A01 /* GRAnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7C30792815C098B900D5DE36 /* PinAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinAnnotation.h; sourceTree = "<group>"; };
-		7C30792915C098B900D5DE36 /* PinAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinAnnotation.m; sourceTree = "<group>"; };
+		7C30792815C098B900D5DE36 /* GRAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRAnnotation.h; sourceTree = "<group>"; };
+		7C30792915C098B900D5DE36 /* GRAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRAnnotation.m; sourceTree = "<group>"; };
 		7C3CF0FB15EBFC88003D9D44 /* Leg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leg.h; sourceTree = "<group>"; };
 		7C3CF0FC15EBFC88003D9D44 /* Leg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leg.m; sourceTree = "<group>"; };
 		7C8629F415F16F750088C2E8 /* MKPolyline+Decoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKPolyline+Decoding.h"; sourceTree = "<group>"; };
@@ -53,6 +56,10 @@
 		7CBF07E615AE2CAC00C33B92 /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Step.m; sourceTree = "<group>"; };
 		7CD1929715FA694E00519A01 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
 		7CD1929815FA694E00519A01 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
+		7CD1953315FA7F5200519A01 /* annotation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "annotation@2x.png"; sourceTree = "<group>"; };
+		7CD1953515FA7F7300519A01 /* annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = annotation.png; sourceTree = "<group>"; };
+		7CD1953915FA81BB00519A01 /* GRAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRAnnotationView.h; sourceTree = "<group>"; };
+		7CD1953A15FA81BB00519A01 /* GRAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRAnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,12 +121,15 @@
 				7C3CF0FC15EBFC88003D9D44 /* Leg.m */,
 				7CBF07E515AE2CAC00C33B92 /* Step.h */,
 				7CBF07E615AE2CAC00C33B92 /* Step.m */,
-				7C30792815C098B900D5DE36 /* PinAnnotation.h */,
-				7C30792915C098B900D5DE36 /* PinAnnotation.m */,
+				7C30792815C098B900D5DE36 /* GRAnnotation.h */,
+				7C30792915C098B900D5DE36 /* GRAnnotation.m */,
+				7CD1953915FA81BB00519A01 /* GRAnnotationView.h */,
+				7CD1953A15FA81BB00519A01 /* GRAnnotationView.m */,
 				7C8629F415F16F750088C2E8 /* MKPolyline+Decoding.h */,
 				7C8629F515F16F750088C2E8 /* MKPolyline+Decoding.m */,
 				7CD1929715FA694E00519A01 /* UIColor+Utilities.h */,
 				7CD1929815FA694E00519A01 /* UIColor+Utilities.m */,
+				7CD1953215FA7F5200519A01 /* images */,
 				7CBF07C515AE0D8800C33B92 /* Supporting Files */,
 			);
 			path = Routing;
@@ -134,6 +144,15 @@
 				7CBF07CC15AE0D8800C33B92 /* GRouting-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7CD1953215FA7F5200519A01 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7CD1953515FA7F7300519A01 /* annotation.png */,
+				7CD1953315FA7F5200519A01 /* annotation@2x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +208,8 @@
 			files = (
 				7CBF07C915AE0D8800C33B92 /* InfoPlist.strings in Resources */,
 				7CBF07D215AE0D8800C33B92 /* MainStoryboard.storyboard in Resources */,
+				7CD1953415FA7F5200519A01 /* annotation@2x.png in Resources */,
+				7CD1953615FA7F7300519A01 /* annotation.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,10 +225,11 @@
 				7CBF07D815AE0D8800C33B92 /* ViewController.m in Sources */,
 				7CBF07E415AE292100C33B92 /* Route.m in Sources */,
 				7CBF07E715AE2CAC00C33B92 /* Step.m in Sources */,
-				7C30792A15C098B900D5DE36 /* PinAnnotation.m in Sources */,
+				7C30792A15C098B900D5DE36 /* GRAnnotation.m in Sources */,
 				7C3CF0FD15EBFC88003D9D44 /* Leg.m in Sources */,
 				7C8629F615F16F750088C2E8 /* MKPolyline+Decoding.m in Sources */,
 				7CD1929915FA694E00519A01 /* UIColor+Utilities.m in Sources */,
+				7CD1953B15FA81BB00519A01 /* GRAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
