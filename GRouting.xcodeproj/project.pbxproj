@@ -23,6 +23,7 @@
 		7CBF07E115AE25FF00C33B92 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07E015AE25FF00C33B92 /* CoreLocation.framework */; };
 		7CBF07E415AE292100C33B92 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07E315AE292100C33B92 /* Route.m */; };
 		7CBF07E715AE2CAC00C33B92 /* Step.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07E615AE2CAC00C33B92 /* Step.m */; };
+		7CD1929915FA694E00519A01 /* UIColor+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD1929815FA694E00519A01 /* UIColor+Utilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		7CBF07E315AE292100C33B92 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		7CBF07E515AE2CAC00C33B92 /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Step.h; sourceTree = "<group>"; };
 		7CBF07E615AE2CAC00C33B92 /* Step.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Step.m; sourceTree = "<group>"; };
+		7CD1929715FA694E00519A01 /* UIColor+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utilities.h"; sourceTree = "<group>"; };
+		7CD1929815FA694E00519A01 /* UIColor+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utilities.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				7C30792915C098B900D5DE36 /* PinAnnotation.m */,
 				7C8629F415F16F750088C2E8 /* MKPolyline+Decoding.h */,
 				7C8629F515F16F750088C2E8 /* MKPolyline+Decoding.m */,
+				7CD1929715FA694E00519A01 /* UIColor+Utilities.h */,
+				7CD1929815FA694E00519A01 /* UIColor+Utilities.m */,
 				7CBF07C515AE0D8800C33B92 /* Supporting Files */,
 			);
 			path = Routing;
@@ -206,6 +211,7 @@
 				7C30792A15C098B900D5DE36 /* PinAnnotation.m in Sources */,
 				7C3CF0FD15EBFC88003D9D44 /* Leg.m in Sources */,
 				7C8629F615F16F750088C2E8 /* MKPolyline+Decoding.m in Sources */,
+				7CD1929915FA694E00519A01 /* UIColor+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

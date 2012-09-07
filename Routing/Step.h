@@ -13,13 +13,14 @@
 @interface Step : NSObject
 
 @property (nonatomic) double distance;
+@property (nonatomic) NSString* distanceString;
 @property (nonatomic) NSTimeInterval duration;
 @property (nonatomic) CLLocationCoordinate2D startCoordinate;
 @property (nonatomic) CLLocationCoordinate2D endCoordinate;
 @property (nonatomic, strong) NSString* HTMLInstructions;
 @property (nonatomic, strong) NSString* travelMode;
 @property (nonatomic, strong) NSString* polylineString;
-@property (nonatomic, strong) NSArray* steps;
+@property (nonatomic, strong) NSDictionary* transitDetails;
 
 + (Step*)stepWithDictionary:(NSDictionary*)dict;
 + (NSArray*)stepsWithArray:(NSArray*)array;

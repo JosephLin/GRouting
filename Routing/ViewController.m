@@ -10,6 +10,7 @@
 #import "Route.h"
 #import "PinAnnotation.h"
 #import "MKPolyline+Decoding.h"
+#import "UIColor+Utilities.h"
 
 #define kStartPointTitle    @"Start"
 #define kOtherPointTitle    @"Transfer"
@@ -21,12 +22,12 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
 @interface ViewController () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @property (nonatomic, strong) MKDirectionsRequest* currentRequest;
+@property (nonatomic, strong) NSMutableDictionary* lineColorDict;
+@property (nonatomic, strong) id JSONResponse;
 @end
 
 
 @implementation ViewController
-@synthesize mapView;
-@synthesize locationManager, currentRequest;
 
 
 - (void)viewDidLoad
@@ -39,6 +40,17 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+}
+
+- (void)clearMap
+{
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView removeOverlays:self.mapView.overlays];
+}
+
+- (IBAction)refreshButtonTapped:(id)sender
+{
+    [self processJSONResponse:self.JSONResponse];
 }
 
 - (void)showLastRoute
@@ -115,8 +127,8 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
 //        NSLog(@"HTTP Response: %@", response);
         if ( !error )
         {
-            id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            [self processJSONResponse:object];
+            self.JSONResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            [self processJSONResponse:self.JSONResponse];
         }
     }];
 }
@@ -139,9 +151,12 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
 
 - (void)displayRoute:(Route*)route
 {
+    [self clearMap];
+
     self.mapView.region = route.bounds;
 
     NSArray* allSteps = [route valueForKeyPath:@"legs.@unionOfArrays.steps"];
+    self.lineColorDict = [NSMutableDictionary dictionaryWithCapacity:[allSteps count]];
 
     for ( int i = 0; i < [allSteps count]; i++ )
     {
@@ -149,11 +164,34 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
 
         PinAnnotation* annotation = [PinAnnotation new];
         annotation.coordinate = step.startCoordinate;
-        annotation.title = (i == 0) ? kStartPointTitle : kOtherPointTitle;
-        annotation.subtitle = step.HTMLInstructions;
-        [self.mapView addAnnotation:annotation];
+        annotation.type = (i == 0) ? PinAnnotationTypeStart : PinAnnotationTypeRegular;
 
         MKPolyline *polyline = [MKPolyline polylineWithEncodedString:step.polylineString];
+        
+        if ([step.travelMode isEqualToString:@"WALKING"])
+        {
+            annotation.title = step.HTMLInstructions;
+            annotation.subtitle = step.distanceString;
+        }
+        else if ([step.travelMode isEqualToString:@"TRANSIT"])
+        {
+            NSString* colorCode = [[step.transitDetails objectForKey:@"line"] objectForKey:@"color"];
+            NSString* shortName = [[step.transitDetails objectForKey:@"line"] objectForKey:@"short_name"];
+            NSString* name = [[step.transitDetails objectForKey:@"line"] objectForKey:@"name"];
+            NSString* fromStop = [[step.transitDetails objectForKey:@"departure_stop"] objectForKey:@"name"];
+            NSString* toStop = [[step.transitDetails objectForKey:@"arrival_stop"] objectForKey:@"name"];
+            
+            annotation.title = [NSString stringWithFormat:@"%@ - %@", shortName, name];
+            annotation.subtitle = [NSString stringWithFormat:@"%@ to %@", fromStop, toStop];
+            polyline.title =colorCode;
+        }
+        else
+        {
+            annotation.title = step.HTMLInstructions;
+            annotation.subtitle = step.travelMode;
+        }
+        
+        [self.mapView addAnnotation:annotation];
         [self.mapView addOverlay:polyline];
 
         
@@ -161,7 +199,7 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
         {
             PinAnnotation* annotation = [PinAnnotation new];
             annotation.coordinate = step.endCoordinate;
-            annotation.title = kEndPointTitle;
+            annotation.type = PinAnnotationTypeEnd;
             [self.mapView addAnnotation:annotation];
         }
     }
@@ -189,26 +227,33 @@ static NSString* baseURL = @"http://maps.googleapis.com/maps/api/directions/json
     static NSString* pinReuseIdentifier = @"pinReuseIdentifier";
     MKPinAnnotationView* pinAnnotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
     pinAnnotationView.canShowCallout = YES;
-    if ([annotation.title isEqualToString:kStartPointTitle])
+    
+    if ( [annotation isKindOfClass:[PinAnnotation class]])
     {
-        pinAnnotationView.pinColor = MKPinAnnotationColorRed;
+        switch ([(PinAnnotation*)annotation type])
+        {
+            case PinAnnotationTypeStart:
+                pinAnnotationView.pinColor = MKPinAnnotationColorGreen;
+                break;
+                
+            case PinAnnotationTypeEnd:
+                pinAnnotationView.pinColor = MKPinAnnotationColorRed;
+                break;
+                
+            default:
+                pinAnnotationView.pinColor = MKPinAnnotationColorPurple;
+                break;
+        }
     }
-    else if ([annotation.title isEqualToString:kEndPointTitle])
-    {
-        pinAnnotationView.pinColor = MKPinAnnotationColorGreen;
-    }
-    else
-    {
-        pinAnnotationView.pinColor = MKPinAnnotationColorPurple;
-    }
+
     return pinAnnotationView;
 }
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
     MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
-    polylineView.strokeColor = [UIColor blueColor];
-    polylineView.lineWidth = 5.0;
+    polylineView.strokeColor = (overlay.title) ? [UIColor colorFromHexString:overlay.title] : [UIColor lightPurpleColor];
+    polylineView.lineWidth = 10.0;
     
     return polylineView;
 }

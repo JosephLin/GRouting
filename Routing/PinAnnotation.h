@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+typedef enum {
+    PinAnnotationTypeStart = 0,
+    PinAnnotationTypeRegular,
+    PinAnnotationTypeEnd,
+} PinAnnotationType;
+
 
 @interface PinAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic) PinAnnotationType type;
 
 @end

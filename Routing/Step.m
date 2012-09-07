@@ -11,8 +11,6 @@
 
 @implementation Step
 
-@synthesize distance, duration, startCoordinate, endCoordinate, HTMLInstructions, travelMode, steps;
-
 
 + (Step*)stepWithDictionary:(NSDictionary*)dict
 {
@@ -20,6 +18,7 @@
     
     NSDictionary* distance = [dict objectForKey:@"distance"];
     step.distance = [[distance objectForKey:@"value"] doubleValue];
+    step.distanceString = [distance objectForKey:@"text"];
 
     NSDictionary* duration = [dict objectForKey:@"distance"];
     step.duration = [[duration objectForKey:@"value"] doubleValue];
@@ -35,8 +34,8 @@
     step.travelMode = [dict objectForKey:@"travel_mode"];
     
     step.polylineString = [[dict objectForKey:@"polyline"] objectForKey:@"points"];
-    
-//    step.steps = [Step stepsWithArray:[dict objectForKey:@"steps"]];
+
+    step.transitDetails = [dict objectForKey:@"transit_details"];
     
     return step;
 }
