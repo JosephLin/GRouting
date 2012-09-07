@@ -55,8 +55,13 @@
 {
     [self clearMap];
 
+    // Set Bounds.
+    
     self.mapView.region = route.bounds;
 
+    
+    // Iterate through all steps.
+    
     NSArray* allSteps = [route valueForKeyPath:@"legs.@unionOfArrays.steps"];
     self.lineColorDict = [NSMutableDictionary dictionaryWithCapacity:[allSteps count]];
 
@@ -76,6 +81,7 @@
             annotation.subtitle = step.distanceString;
             annotation.symbol = @"🚶";
         }
+        
         else if ([step.travelMode isEqualToString:@"TRANSIT"])
         {
             NSString* colorCode = [[step.transitDetails objectForKey:@"line"] objectForKey:@"color"];
@@ -85,6 +91,8 @@
             NSString* toStop = [[step.transitDetails objectForKey:@"arrival_stop"] objectForKey:@"name"];
             NSString* vehicleType = [[[step.transitDetails objectForKey:@"line"] objectForKey:@"vehicle"] objectForKey:@"type"];
             
+            
+            // Annotation Title
             if (name && shortName)
             {
                 annotation.title = [NSString stringWithFormat:@"%@ - %@", shortName, name];
@@ -102,8 +110,12 @@
                 annotation.title = step.HTMLInstructions;
             }
 
+            
+            // Annotation Subtitle
             annotation.subtitle = [NSString stringWithFormat:@"%@ to %@", fromStop, toStop];
             
+            
+            // Annotation Symbol
             if ([vehicleType isEqualToString:@"BUS"])
             {
                 annotation.symbol = @"🚌";
@@ -118,18 +130,23 @@
                 annotation.symbolColorCode = colorCode;
             }
 
+            
+            // Line Color
             polyline.title = colorCode;
         }
+        
         else
         {
             annotation.title = step.HTMLInstructions;
             annotation.subtitle = step.travelMode;
         }
         
+        
         [self.mapView addAnnotation:annotation];
         [self.mapView addOverlay:polyline];
 
         
+        // Add an additional pin at the destination.
         if (i == [allSteps count] - 1)
         {
             GRAnnotation* annotation = [GRAnnotation new];
@@ -138,8 +155,6 @@
             [self.mapView addAnnotation:annotation];
         }
     }
-    
-    NSLog(@"Annotations: %@", self.mapView.annotations);
 }
 
 
