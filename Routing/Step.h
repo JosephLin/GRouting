@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSString* travelMode;
 @property (nonatomic, strong) NSString* polylineString;
 @property (nonatomic, strong) NSDictionary* transitDetails;
+@property (nonatomic, strong) NSString* vehicleType;
+@property (nonatomic, strong, readonly) NSString* vehicleSymbol;
 
 + (Step*)stepWithDictionary:(NSDictionary*)dict;
 + (NSArray*)stepsWithArray:(NSArray*)array;

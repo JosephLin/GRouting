@@ -84,12 +84,11 @@
         
         else if ([step.travelMode isEqualToString:@"TRANSIT"])
         {
-            NSString* colorCode = [[step.transitDetails objectForKey:@"line"] objectForKey:@"color"];
-            NSString* shortName = [[step.transitDetails objectForKey:@"line"] objectForKey:@"short_name"];
-            NSString* name = [[step.transitDetails objectForKey:@"line"] objectForKey:@"name"];
-            NSString* fromStop = [[step.transitDetails objectForKey:@"departure_stop"] objectForKey:@"name"];
-            NSString* toStop = [[step.transitDetails objectForKey:@"arrival_stop"] objectForKey:@"name"];
-            NSString* vehicleType = [[[step.transitDetails objectForKey:@"line"] objectForKey:@"vehicle"] objectForKey:@"type"];
+            NSString* colorCode = [step.transitDetails valueForKeyPath:@"line.color"];
+            NSString* shortName = [step.transitDetails valueForKeyPath:@"line.short_name"];
+            NSString* name = [step.transitDetails valueForKeyPath:@"line.name"];
+            NSString* fromStop = [step.transitDetails valueForKeyPath:@"departure_stop.name"];
+            NSString* toStop = [step.transitDetails valueForKeyPath:@"arrival_stop.name"];
             
             
             // Annotation Title
@@ -116,13 +115,9 @@
             
             
             // Annotation Symbol
-            if ([vehicleType isEqualToString:@"BUS"])
+            if (step.vehicleSymbol)
             {
-                annotation.symbol = @"🚌";
-            }
-            else if ([vehicleType isEqualToString:@"HEAVY_RAIL"])
-            {
-                annotation.symbol = @"🚉";
+                annotation.symbol = step.vehicleSymbol;                
             }
             else
             {
