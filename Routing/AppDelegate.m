@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <MapKit/MapKit.h>
-#import "ViewController.h"
+#import "ServiceManager.h"
 
 
 @implementation AppDelegate
@@ -17,10 +17,7 @@
 {
     if (!launchOptions)
     {
-        if ( [self.window.rootViewController isMemberOfClass:[ViewController class]] )
-        {
-            [(ViewController*)self.window.rootViewController showLastRoute];
-        }
+        [[ServiceManager sharedInstance] findRouteUsingCacheLocations];
     }
     return YES;
 }
@@ -30,11 +27,8 @@
     if ([MKDirectionsRequest isDirectionsRequestURL:url])
     {
         MKDirectionsRequest* directionsInfo = [[MKDirectionsRequest alloc] initWithContentsOfURL:url];
-    
-        if ( [self.window.rootViewController isMemberOfClass:[ViewController class]] )
-        {
-            [(ViewController*)self.window.rootViewController processRequest:directionsInfo];
-        }
+        [[ServiceManager sharedInstance] processRequest:directionsInfo];
+        
         return YES;
     }
 

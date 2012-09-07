@@ -13,8 +13,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView translatesAutoresizingMaskIntoConstraints="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="0WU-Yp-qwa">
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="geT-sT-Osq"/>
+                                    <outletCollection property="gestureRecognizers" destination="eH8-uQ-MHQ" appends="YES" id="EHD-f5-sgw"/>
                                 </connections>
                             </mapView>
                             <toolbar translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1Hw-sl-s3x">
@@ -43,6 +45,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="eH8-uQ-MHQ"/>
             </objects>
         </scene>
     </scenes>

@@ -26,6 +26,8 @@
 		7CD1953415FA7F5200519A01 /* annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD1953315FA7F5200519A01 /* annotation@2x.png */; };
 		7CD1953615FA7F7300519A01 /* annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CD1953515FA7F7300519A01 /* annotation.png */; };
 		7CD1953B15FA81BB00519A01 /* GRAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD1953A15FA81BB00519A01 /* GRAnnotationView.m */; };
+		7CD1954115FA9C0C00519A01 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD1954015FA9C0C00519A01 /* ServiceManager.m */; };
+		7CD1954415FA9EAB00519A01 /* NSDictionary+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD1954315FA9EAB00519A01 /* NSDictionary+Utilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,10 @@
 		7CD1953515FA7F7300519A01 /* annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = annotation.png; sourceTree = "<group>"; };
 		7CD1953915FA81BB00519A01 /* GRAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRAnnotationView.h; sourceTree = "<group>"; };
 		7CD1953A15FA81BB00519A01 /* GRAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRAnnotationView.m; sourceTree = "<group>"; };
+		7CD1953F15FA9C0C00519A01 /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
+		7CD1954015FA9C0C00519A01 /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
+		7CD1954215FA9EAB00519A01 /* NSDictionary+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utilities.h"; sourceTree = "<group>"; };
+		7CD1954315FA9EAB00519A01 /* NSDictionary+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utilities.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,25 +116,16 @@
 		7CBF07C415AE0D8800C33B92 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
+				7CBF07D015AE0D8800C33B92 /* MainStoryboard.storyboard */,
 				7CBF07CD15AE0D8800C33B92 /* AppDelegate.h */,
 				7CBF07CE15AE0D8800C33B92 /* AppDelegate.m */,
-				7CBF07D015AE0D8800C33B92 /* MainStoryboard.storyboard */,
 				7CBF07D615AE0D8800C33B92 /* ViewController.h */,
 				7CBF07D715AE0D8800C33B92 /* ViewController.m */,
-				7CBF07E215AE292100C33B92 /* Route.h */,
-				7CBF07E315AE292100C33B92 /* Route.m */,
-				7C3CF0FB15EBFC88003D9D44 /* Leg.h */,
-				7C3CF0FC15EBFC88003D9D44 /* Leg.m */,
-				7CBF07E515AE2CAC00C33B92 /* Step.h */,
-				7CBF07E615AE2CAC00C33B92 /* Step.m */,
-				7C30792815C098B900D5DE36 /* GRAnnotation.h */,
-				7C30792915C098B900D5DE36 /* GRAnnotation.m */,
-				7CD1953915FA81BB00519A01 /* GRAnnotationView.h */,
-				7CD1953A15FA81BB00519A01 /* GRAnnotationView.m */,
-				7C8629F415F16F750088C2E8 /* MKPolyline+Decoding.h */,
-				7C8629F515F16F750088C2E8 /* MKPolyline+Decoding.m */,
-				7CD1929715FA694E00519A01 /* UIColor+Utilities.h */,
-				7CD1929815FA694E00519A01 /* UIColor+Utilities.m */,
+				7CD1953F15FA9C0C00519A01 /* ServiceManager.h */,
+				7CD1954015FA9C0C00519A01 /* ServiceManager.m */,
+				7CD1953C15FA9BB100519A01 /* Data Model */,
+				7CD1953E15FA9BD900519A01 /* Annotation */,
+				7CD1953D15FA9BCE00519A01 /* Categories */,
 				7CD1953215FA7F5200519A01 /* images */,
 				7CBF07C515AE0D8800C33B92 /* Supporting Files */,
 			);
@@ -153,6 +150,43 @@
 				7CD1953315FA7F5200519A01 /* annotation@2x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		7CD1953C15FA9BB100519A01 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				7CBF07E215AE292100C33B92 /* Route.h */,
+				7CBF07E315AE292100C33B92 /* Route.m */,
+				7C3CF0FB15EBFC88003D9D44 /* Leg.h */,
+				7C3CF0FC15EBFC88003D9D44 /* Leg.m */,
+				7CBF07E515AE2CAC00C33B92 /* Step.h */,
+				7CBF07E615AE2CAC00C33B92 /* Step.m */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		7CD1953D15FA9BCE00519A01 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7C8629F415F16F750088C2E8 /* MKPolyline+Decoding.h */,
+				7C8629F515F16F750088C2E8 /* MKPolyline+Decoding.m */,
+				7CD1929715FA694E00519A01 /* UIColor+Utilities.h */,
+				7CD1929815FA694E00519A01 /* UIColor+Utilities.m */,
+				7CD1954215FA9EAB00519A01 /* NSDictionary+Utilities.h */,
+				7CD1954315FA9EAB00519A01 /* NSDictionary+Utilities.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		7CD1953E15FA9BD900519A01 /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				7C30792815C098B900D5DE36 /* GRAnnotation.h */,
+				7C30792915C098B900D5DE36 /* GRAnnotation.m */,
+				7CD1953915FA81BB00519A01 /* GRAnnotationView.h */,
+				7CD1953A15FA81BB00519A01 /* GRAnnotationView.m */,
+			);
+			name = Annotation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +264,8 @@
 				7C8629F615F16F750088C2E8 /* MKPolyline+Decoding.m in Sources */,
 				7CD1929915FA694E00519A01 /* UIColor+Utilities.m in Sources */,
 				7CD1953B15FA81BB00519A01 /* GRAnnotationView.m in Sources */,
+				7CD1954115FA9C0C00519A01 /* ServiceManager.m in Sources */,
+				7CD1954415FA9EAB00519A01 /* NSDictionary+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
