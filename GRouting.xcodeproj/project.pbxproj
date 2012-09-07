@@ -16,8 +16,7 @@
 		7CBF07C915AE0D8800C33B92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CBF07C715AE0D8800C33B92 /* InfoPlist.strings */; };
 		7CBF07CB15AE0D8800C33B92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07CA15AE0D8800C33B92 /* main.m */; };
 		7CBF07CF15AE0D8800C33B92 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07CE15AE0D8800C33B92 /* AppDelegate.m */; };
-		7CBF07D215AE0D8800C33B92 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CBF07D015AE0D8800C33B92 /* MainStoryboard_iPhone.storyboard */; };
-		7CBF07D515AE0D8800C33B92 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CBF07D315AE0D8800C33B92 /* MainStoryboard_iPad.storyboard */; };
+		7CBF07D215AE0D8800C33B92 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CBF07D015AE0D8800C33B92 /* MainStoryboard.storyboard */; };
 		7CBF07D815AE0D8800C33B92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBF07D715AE0D8800C33B92 /* ViewController.m */; };
 		7CBF07DF15AE0FD100C33B92 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07DE15AE0FD100C33B92 /* MapKit.framework */; };
 		7CBF07E115AE25FF00C33B92 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBF07E015AE25FF00C33B92 /* CoreLocation.framework */; };
@@ -43,8 +42,7 @@
 		7CBF07CC15AE0D8800C33B92 /* GRouting-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GRouting-Prefix.pch"; sourceTree = "<group>"; };
 		7CBF07CD15AE0D8800C33B92 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7CBF07CE15AE0D8800C33B92 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7CBF07D115AE0D8800C33B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		7CBF07D415AE0D8800C33B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		7CBF07D115AE0D8800C33B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		7CBF07D615AE0D8800C33B92 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		7CBF07D715AE0D8800C33B92 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7CBF07DE15AE0FD100C33B92 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -107,8 +105,7 @@
 			children = (
 				7CBF07CD15AE0D8800C33B92 /* AppDelegate.h */,
 				7CBF07CE15AE0D8800C33B92 /* AppDelegate.m */,
-				7CBF07D015AE0D8800C33B92 /* MainStoryboard_iPhone.storyboard */,
-				7CBF07D315AE0D8800C33B92 /* MainStoryboard_iPad.storyboard */,
+				7CBF07D015AE0D8800C33B92 /* MainStoryboard.storyboard */,
 				7CBF07D615AE0D8800C33B92 /* ViewController.h */,
 				7CBF07D715AE0D8800C33B92 /* ViewController.m */,
 				7CBF07E215AE292100C33B92 /* Route.h */,
@@ -191,8 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CBF07C915AE0D8800C33B92 /* InfoPlist.strings in Resources */,
-				7CBF07D215AE0D8800C33B92 /* MainStoryboard_iPhone.storyboard in Resources */,
-				7CBF07D515AE0D8800C33B92 /* MainStoryboard_iPad.storyboard in Resources */,
+				7CBF07D215AE0D8800C33B92 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,20 +222,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		7CBF07D015AE0D8800C33B92 /* MainStoryboard_iPhone.storyboard */ = {
+		7CBF07D015AE0D8800C33B92 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7CBF07D115AE0D8800C33B92 /* en */,
 			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		7CBF07D315AE0D8800C33B92 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7CBF07D415AE0D8800C33B92 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
+			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
