@@ -26,8 +26,24 @@
                                             <action selector="refreshButtonTapped:" destination="2" id="Aqr-GG-W3f"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Lw9-gV-WG6"/>
+                                    <barButtonItem image="locate.png" id="uMB-5t-cHa">
+                                        <connections>
+                                            <action selector="locateButtonTapped:" destination="2" id="5lE-Hc-aOR"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Powered By Google" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="lc8-Ek-BJb">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="DCZ-aq-oDI"/>
+                                    <constraint firstAttribute="width" constant="152" id="Mjs-sI-kQk"/>
+                                </constraints>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -35,9 +51,11 @@
                             <constraint firstItem="1Hw-sl-s3x" firstAttribute="top" secondItem="0WU-Yp-qwa" secondAttribute="bottom" type="default" id="2JU-1v-Mw0"/>
                             <constraint firstItem="1Hw-sl-s3x" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="5zO-QM-Kms"/>
                             <constraint firstItem="0WU-Yp-qwa" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="O0C-zA-Bxl"/>
+                            <constraint firstAttribute="bottom" secondItem="lc8-Ek-BJb" secondAttribute="bottom" constant="12" id="cwd-WW-DC6"/>
                             <constraint firstItem="1Hw-sl-s3x" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="ey5-75-NMu"/>
                             <constraint firstItem="1Hw-sl-s3x" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="gFM-21-t3K"/>
                             <constraint firstItem="0WU-Yp-qwa" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="nbf-KP-cxj"/>
+                            <constraint firstItem="lc8-Ek-BJb" firstAttribute="centerX" secondItem="1Hw-sl-s3x" secondAttribute="centerX" type="default" id="wxW-3f-9jX"/>
                         </constraints>
                     </view>
                     <connections>
@@ -45,10 +63,17 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="eH8-uQ-MHQ"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="eH8-uQ-MHQ">
+                    <connections>
+                        <action selector="handleLongPress:" destination="2" id="GiD-i1-civ"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="locate.png" width="20" height="20"/>
+    </resources>
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
@@ -56,6 +81,8 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="handleLongPress:" candidateClass="UILongPressGestureRecognizer"/>
+                <relationship kind="action" name="locateButtonTapped:"/>
                 <relationship kind="action" name="refreshButtonTapped:"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>

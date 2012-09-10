@@ -20,6 +20,7 @@
 
 + (ServiceManager *)sharedInstance;
 - (void)processRequest:(MKDirectionsRequest*)request;
+- (void)findRouteFromLocation:(CLLocation*)fromLocation toLocation:(CLLocation*)toLocation;
 - (void)findRouteUsingCacheLocations;
 
 @end

@@ -13,6 +13,7 @@ typedef enum {
     GRAnnotationTypeStart = 0,
     GRAnnotationTypeEnd,
     GRAnnotationTypeRegular,
+    GRAnnotationTypeTouchPoint,
 } GRAnnotationType;
 
 

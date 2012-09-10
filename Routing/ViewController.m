@@ -17,6 +17,7 @@
 
 @interface ViewController () <ServiceManagerDelegate>
 @property (nonatomic, strong) NSMutableDictionary* lineColorDict;
+@property (nonatomic, strong) GRAnnotation* touchPointAnnotation;
 @end
 
 
@@ -29,6 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.mapView.showsUserLocation = YES;
+    
     [ServiceManager sharedInstance].delegate = self;
 }
 
@@ -40,6 +44,51 @@
 - (IBAction)refreshButtonTapped:(id)sender
 {
     [[ServiceManager sharedInstance] findRouteUsingCacheLocations];
+}
+
+- (IBAction)locateButtonTapped:(id)sender
+{
+    if (self.mapView.userLocation.location)
+    {
+        [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:YES];
+    }
+}
+
+- (IBAction)handleLongPress:(UILongPressGestureRecognizer*)sender
+{
+    if ( sender.state == UIGestureRecognizerStateBegan )
+    {
+        CGPoint touchPoint = [sender locationInView:self.mapView];
+        
+        CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+        
+        if (self.touchPointAnnotation)
+        {
+            [self.mapView removeAnnotation:self.touchPointAnnotation];
+        }
+        self.touchPointAnnotation = [GRAnnotation new];
+        self.touchPointAnnotation.coordinate = coordinate;
+        self.touchPointAnnotation.type = GRAnnotationTypeTouchPoint;
+        self.touchPointAnnotation.title = @"Find Route";
+        [self.mapView addAnnotation:self.touchPointAnnotation];
+    }
+}
+
+- (void)findRouteCalloutButtonTapped:(id)sender
+{
+    if (!self.mapView.userLocation.location)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:@"Cannot determine current location."
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+        
+        return;
+    }
+    
+    CLLocation* toLocation = [[CLLocation alloc] initWithLatitude:self.touchPointAnnotation.coordinate.latitude longitude:self.touchPointAnnotation.coordinate.longitude];
+    [[ServiceManager sharedInstance] findRouteFromLocation:self.mapView.userLocation.location toLocation:toLocation];
 }
 
 
@@ -157,8 +206,12 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation
 {
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    
     static NSString* pinReuseIdentifier = @"pinReuseIdentifier";
-
+    
     switch ([(GRAnnotation*)annotation type])
     {
         case GRAnnotationTypeStart:
@@ -174,6 +227,20 @@
             MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
             annotationView.canShowCallout = YES;
             annotationView.pinColor = MKPinAnnotationColorRed;
+            return annotationView;
+        }
+            
+        case GRAnnotationTypeTouchPoint:
+        {
+            MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
+            annotationView.canShowCallout = YES;
+            annotationView.animatesDrop = YES;
+            annotationView.pinColor = MKPinAnnotationColorPurple;
+            
+            UIButton* button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [button addTarget:self action:@selector(findRouteCalloutButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+            annotationView.rightCalloutAccessoryView = button;
+            
             return annotationView;
         }
             
@@ -195,6 +262,11 @@
     polylineView.strokeColor = (overlay.title) ? [UIColor colorFromHexString:overlay.title] : [UIColor lightPurpleColor];
     polylineView.lineWidth = 10.0;
     return polylineView;
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    
 }
 
 
