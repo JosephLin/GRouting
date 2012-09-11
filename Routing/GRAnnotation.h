@@ -23,6 +23,7 @@ typedef enum {
 @property (nonatomic, strong) NSString *subtitle;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic) GRAnnotationType type;
+@property (nonatomic) BOOL isFromLongPress;
 @property (nonatomic, strong) NSString *symbol;
 @property (nonatomic, strong) NSString *symbolColorCode;
 

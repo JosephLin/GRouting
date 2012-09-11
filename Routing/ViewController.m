@@ -17,7 +17,8 @@
 
 @interface ViewController () <ServiceManagerDelegate>
 @property (nonatomic, strong) NSMutableDictionary* lineColorDict;
-@property (nonatomic, strong) GRAnnotation* touchPointAnnotation;
+@property (nonatomic, strong) GRAnnotation* startAnnotation;
+@property (nonatomic, strong) GRAnnotation* endAnnotation;
 @end
 
 
@@ -36,11 +37,6 @@
     [ServiceManager sharedInstance].delegate = self;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
 - (IBAction)refreshButtonTapped:(id)sender
 {
     [[ServiceManager sharedInstance] findRouteUsingCacheLocations];
@@ -51,6 +47,19 @@
     if (self.mapView.userLocation.location)
     {
         [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:YES];
+        
+        
+        // Set the start annotation to user's current location.
+        if (self.startAnnotation)
+        {
+            [self.mapView removeAnnotation:self.startAnnotation];
+        }
+        
+        self.startAnnotation = [GRAnnotation new];
+        self.startAnnotation.coordinate = self.mapView.userLocation.coordinate;
+        self.startAnnotation.type = GRAnnotationTypeStart;
+        self.startAnnotation.title = @"Direction From Here";
+        [self.mapView addAnnotation:self.startAnnotation];
     }
 }
 
@@ -59,18 +68,21 @@
     if ( sender.state == UIGestureRecognizerStateBegan )
     {
         CGPoint touchPoint = [sender locationInView:self.mapView];
-        
         CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
         
-        if (self.touchPointAnnotation)
+        
+        // Set the end annotation to user's tap point.
+        if (self.endAnnotation)
         {
-            [self.mapView removeAnnotation:self.touchPointAnnotation];
+            [self.mapView removeAnnotation:self.endAnnotation];
         }
-        self.touchPointAnnotation = [GRAnnotation new];
-        self.touchPointAnnotation.coordinate = coordinate;
-        self.touchPointAnnotation.type = GRAnnotationTypeTouchPoint;
-        self.touchPointAnnotation.title = @"Find Route";
-        [self.mapView addAnnotation:self.touchPointAnnotation];
+        
+        self.endAnnotation = [GRAnnotation new];
+        self.endAnnotation.coordinate = coordinate;
+        self.endAnnotation.type = GRAnnotationTypeEnd;
+        self.endAnnotation.title = @"Direction To Here";
+        self.endAnnotation.isFromLongPress = YES;
+        [self.mapView addAnnotation:self.endAnnotation];
     }
 }
 
@@ -87,8 +99,22 @@
         return;
     }
     
-    CLLocation* toLocation = [[CLLocation alloc] initWithLatitude:self.touchPointAnnotation.coordinate.latitude longitude:self.touchPointAnnotation.coordinate.longitude];
-    [[ServiceManager sharedInstance] findRouteFromLocation:self.mapView.userLocation.location toLocation:toLocation];
+    CLLocation* fromLocation = [[CLLocation alloc] initWithLatitude:self.startAnnotation.coordinate.latitude longitude:self.startAnnotation.coordinate.longitude];
+    CLLocation* toLocation = [[CLLocation alloc] initWithLatitude:self.endAnnotation.coordinate.latitude longitude:self.endAnnotation.coordinate.longitude];
+    [[ServiceManager sharedInstance] findRouteFromLocation:fromLocation toLocation:toLocation];
+}
+
+- (void)switchStartAndEndAnnotation:(id)sender
+{
+    CLLocationCoordinate2D startCoordinate = self.startAnnotation.coordinate;
+    CLLocationCoordinate2D endCoordinate = self.endAnnotation.coordinate;
+    
+    self.startAnnotation.coordinate = endCoordinate;
+    self.endAnnotation.coordinate = startCoordinate;
+    
+    // Reset the title/subtitle.
+    self.startAnnotation.title = @"Start";
+    self.startAnnotation.subtitle = nil;
 }
 
 
@@ -120,7 +146,15 @@
 
         GRAnnotation* annotation = [GRAnnotation new];
         annotation.coordinate = step.startCoordinate;
-        annotation.type = (i == 0) ? GRAnnotationTypeStart : GRAnnotationTypeRegular;
+        if (i == 0)
+        {
+            annotation.type = GRAnnotationTypeStart;
+            self.startAnnotation = annotation;
+        }
+        else
+        {
+            annotation.type = GRAnnotationTypeRegular;
+        }
 
         MKPolyline *polyline = [MKPolyline polylineWithEncodedString:step.polylineString];
         
@@ -193,10 +227,11 @@
         // Add an additional pin at the destination.
         if (i == [allSteps count] - 1)
         {
-            GRAnnotation* annotation = [GRAnnotation new];
-            annotation.coordinate = step.endCoordinate;
-            annotation.type = GRAnnotationTypeEnd;
-            [self.mapView addAnnotation:annotation];
+            self.endAnnotation = [GRAnnotation new];
+            self.endAnnotation.coordinate = step.endCoordinate;
+            self.endAnnotation.type = GRAnnotationTypeEnd;
+            self.endAnnotation.title = @"Destination";
+            [self.mapView addAnnotation:self.endAnnotation];
         }
     }
 }
@@ -211,39 +246,36 @@
     
     
     static NSString* pinReuseIdentifier = @"pinReuseIdentifier";
+    GRAnnotation* theAnnotation = annotation;
     
-    switch ([(GRAnnotation*)annotation type])
+    switch (theAnnotation.type)
     {
         case GRAnnotationTypeStart:
-        {
-            MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
-            annotationView.canShowCallout = YES;
-            annotationView.pinColor = MKPinAnnotationColorGreen;
-            return annotationView;
-        }
-            
         case GRAnnotationTypeEnd:
         {
             MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
             annotationView.canShowCallout = YES;
-            annotationView.pinColor = MKPinAnnotationColorRed;
+            annotationView.animatesDrop = theAnnotation.isFromLongPress;
+            annotationView.pinColor = (theAnnotation.type == GRAnnotationTypeStart) ? MKPinAnnotationColorGreen : MKPinAnnotationColorRed;
+            
+            if (theAnnotation.isFromLongPress)
+            {
+                UIButton* leftButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+                [leftButton addTarget:self action:@selector(switchStartAndEndAnnotation:) forControlEvents:UIControlEventTouchUpInside];
+                annotationView.leftCalloutAccessoryView = leftButton;
+                
+                UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+                [rightButton addTarget:self action:@selector(findRouteCalloutButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+                annotationView.rightCalloutAccessoryView = rightButton;
+            }
+            else
+            {
+                annotationView.leftCalloutAccessoryView = nil;
+                annotationView.restorationIdentifier = nil;
+            }
             return annotationView;
         }
-            
-        case GRAnnotationTypeTouchPoint:
-        {
-            MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinReuseIdentifier];
-            annotationView.canShowCallout = YES;
-            annotationView.animatesDrop = YES;
-            annotationView.pinColor = MKPinAnnotationColorPurple;
-            
-            UIButton* button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [button addTarget:self action:@selector(findRouteCalloutButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-            annotationView.rightCalloutAccessoryView = button;
-            
-            return annotationView;
-        }
-            
+
         default:
         {
             static NSString* grReuseIdentifier = @"grReuseIdentifier";
@@ -266,7 +298,6 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    
 }
 
 
