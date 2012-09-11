@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7C112AC115FE98A900A5AB39 /* locate.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C112ABF15FE98A900A5AB39 /* locate.png */; };
 		7C112AC215FE98A900A5AB39 /* locate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C112AC015FE98A900A5AB39 /* locate@2x.png */; };
+		7C2578B615FFB47500B62615 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2578B515FFB47500B62615 /* icon.png */; };
+		7C2578B915FFB47700B62615 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2578B815FFB47700B62615 /* icon@2x.png */; };
 		7C30792A15C098B900D5DE36 /* GRAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C30792915C098B900D5DE36 /* GRAnnotation.m */; };
 		7C3CF0FD15EBFC88003D9D44 /* Leg.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3CF0FC15EBFC88003D9D44 /* Leg.m */; };
 		7C8629F615F16F750088C2E8 /* MKPolyline+Decoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8629F515F16F750088C2E8 /* MKPolyline+Decoding.m */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		7C112ABF15FE98A900A5AB39 /* locate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locate.png; sourceTree = "<group>"; };
 		7C112AC015FE98A900A5AB39 /* locate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locate@2x.png"; sourceTree = "<group>"; };
+		7C2578B515FFB47500B62615 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
+		7C2578B815FFB47700B62615 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../icon@2x.png"; sourceTree = "<group>"; };
 		7C30792815C098B900D5DE36 /* GRAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRAnnotation.h; sourceTree = "<group>"; };
 		7C30792915C098B900D5DE36 /* GRAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRAnnotation.m; sourceTree = "<group>"; };
 		7C3CF0FB15EBFC88003D9D44 /* Leg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leg.h; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 		7CD1953215FA7F5200519A01 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7C2578B815FFB47700B62615 /* icon@2x.png */,
+				7C2578B515FFB47500B62615 /* icon.png */,
 				7C112ABF15FE98A900A5AB39 /* locate.png */,
 				7C112AC015FE98A900A5AB39 /* locate@2x.png */,
 				7CD1953515FA7F7300519A01 /* annotation.png */,
@@ -252,6 +258,8 @@
 				7CD1953615FA7F7300519A01 /* annotation.png in Resources */,
 				7C112AC115FE98A900A5AB39 /* locate.png in Resources */,
 				7C112AC215FE98A900A5AB39 /* locate@2x.png in Resources */,
+				7C2578B615FFB47500B62615 /* icon.png in Resources */,
+				7C2578B915FFB47700B62615 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
