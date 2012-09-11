@@ -88,10 +88,10 @@
 
 - (void)findRouteCalloutButtonTapped:(id)sender
 {
-    if (!self.mapView.userLocation.location)
+    if (!self.startAnnotation)
     {
         [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:@"Cannot determine current location."
+                                    message:@"Please specific a start point."
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
@@ -260,13 +260,16 @@
             
             if (theAnnotation.isFromLongPress)
             {
-                UIButton* leftButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-                [leftButton addTarget:self action:@selector(switchStartAndEndAnnotation:) forControlEvents:UIControlEventTouchUpInside];
-                annotationView.leftCalloutAccessoryView = leftButton;
-                
                 UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
                 [rightButton addTarget:self action:@selector(findRouteCalloutButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
                 annotationView.rightCalloutAccessoryView = rightButton;
+
+                UIButton* leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                UIImage* switchImage = [UIImage imageNamed:@"switch"];
+                leftButton.bounds = CGRectMake(0, 0, switchImage.size.width, switchImage.size.height);
+                [leftButton setImage:switchImage forState:UIControlStateNormal];
+                [leftButton addTarget:self action:@selector(switchStartAndEndAnnotation:) forControlEvents:UIControlEventTouchUpInside];
+                annotationView.leftCalloutAccessoryView = leftButton;    
             }
             else
             {
