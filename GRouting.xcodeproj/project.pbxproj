@@ -380,10 +380,12 @@
 		7CBF07DD15AE0D8800C33B92 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Routing/GRouting-Prefix.pch";
 				INFOPLIST_FILE = "Routing/GRouting-Info.plist";
 				PRODUCT_NAME = GRouting;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
