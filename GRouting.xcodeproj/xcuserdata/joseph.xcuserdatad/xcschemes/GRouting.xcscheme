@@ -59,6 +59,9 @@
       </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
+      <RoutingCoverageFileReference
+         identifier = "../../Routing/Directions.geojson">
+      </RoutingCoverageFileReference>
    </LaunchAction>
    <ProfileAction
       shouldUseLaunchSchemeArgsEnv = "YES"
