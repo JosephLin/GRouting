@@ -12,13 +12,16 @@
 #import "MKPolyline+Decoding.h"
 #import "UIColor+Utilities.h"
 #import "ServiceManager.h"
+#import "HelpViewController.h"
 
 
 
-@interface ViewController () <ServiceManagerDelegate>
+@interface ViewController () <ServiceManagerDelegate, HelpViewControllerDelegate>
 @property (nonatomic, strong) NSMutableDictionary* lineColorDict;
 @property (nonatomic, strong) GRAnnotation* startAnnotation;
 @property (nonatomic, strong) GRAnnotation* endAnnotation;
+@property (nonatomic, strong) HelpViewController* helpViewController;
+@property (nonatomic) BOOL hasShownHelp;
 @end
 
 
@@ -37,6 +40,54 @@
     [ServiceManager sharedInstance].delegate = self;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (!self.hasShownHelp)
+    {
+        [self helpButtonTapped:nil];
+    }
+}
+
+
+#pragma mark - Help
+
+- (HelpViewController *)helpViewController
+{
+    if (!_helpViewController)
+    {
+        _helpViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"HelpViewController"];
+        _helpViewController.delegate = self;
+        
+        _helpViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _helpViewController.view.frame = self.view.bounds;
+    }
+    return _helpViewController;
+}
+
+- (void)dismissHelpController:(HelpViewController *)controller
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.helpViewController.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [self.helpViewController.view removeFromSuperview];
+    }];
+}
+
+- (IBAction)helpButtonTapped:(id)sender
+{
+    self.helpViewController.view.alpha = 0.0;
+    [self.view addSubview:self.helpViewController.view];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.helpViewController.view.alpha = 1.0;
+    }];
+}
+
+
+#pragma mark - Actions
+
 - (IBAction)refreshButtonTapped:(id)sender
 {
     [[ServiceManager sharedInstance] findRouteUsingCacheLocations];
@@ -46,8 +97,8 @@
 {
     if (self.mapView.userLocation.location)
     {
-        [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:YES];
-        
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.location.coordinate, 3000, 3000);
+        [self.mapView setRegion:region animated:YES];
         
         // Set the start annotation to user's current location.
         if (self.startAnnotation)
@@ -311,6 +362,20 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self displayRoute:route];
     });
+}
+
+
+#pragma mark - First Time Use
+
+- (BOOL)hasShownHelp
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hasShownHelp"];
+}
+
+- (void)setHasShownHelp:(BOOL)hasShownHelp
+{
+    [[NSUserDefaults standardUserDefaults] setBool:hasShownHelp forKey:@"hasShownHelp"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

@@ -14,6 +14,11 @@
 		7C257A3315FFEFD200B62615 /* switch.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C257A3115FFEFD200B62615 /* switch.png */; };
 		7C257A3415FFEFD200B62615 /* switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C257A3215FFEFD200B62615 /* switch@2x.png */; };
 		7C30792A15C098B900D5DE36 /* GRAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C30792915C098B900D5DE36 /* GRAnnotation.m */; };
+		7C3884B1161A54810095244A /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3884AF161A54810095244A /* pin.png */; };
+		7C3884B2161A54810095244A /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3884B0161A54810095244A /* pin@2x.png */; };
+		7C3884B6161A55F80095244A /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3884B4161A55F80095244A /* refresh.png */; };
+		7C3884B7161A55F80095244A /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C3884B5161A55F80095244A /* refresh@2x.png */; };
+		7C3884BA161A66370095244A /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3884B9161A66370095244A /* HelpViewController.m */; };
 		7C3CF0FD15EBFC88003D9D44 /* Leg.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3CF0FC15EBFC88003D9D44 /* Leg.m */; };
 		7C5C6F941609502F00A7C615 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5C6F931609502F00A7C615 /* icon-72.png */; };
 		7C5C6F961609510E00A7C615 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C5C6F951609510E00A7C615 /* icon-72@2x.png */; };
@@ -48,6 +53,12 @@
 		7C257A3215FFEFD200B62615 /* switch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch@2x.png"; sourceTree = "<group>"; };
 		7C30792815C098B900D5DE36 /* GRAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRAnnotation.h; sourceTree = "<group>"; };
 		7C30792915C098B900D5DE36 /* GRAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRAnnotation.m; sourceTree = "<group>"; };
+		7C3884AF161A54810095244A /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		7C3884B0161A54810095244A /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
+		7C3884B4161A55F80095244A /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		7C3884B5161A55F80095244A /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@2x.png"; sourceTree = "<group>"; };
+		7C3884B8161A66370095244A /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		7C3884B9161A66370095244A /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		7C3CF0FB15EBFC88003D9D44 /* Leg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leg.h; sourceTree = "<group>"; };
 		7C3CF0FC15EBFC88003D9D44 /* Leg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Leg.m; sourceTree = "<group>"; };
 		7C5C6F931609502F00A7C615 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "../../icon-72.png"; sourceTree = "<group>"; };
@@ -140,6 +151,8 @@
 				7CBF07CE15AE0D8800C33B92 /* AppDelegate.m */,
 				7CBF07D615AE0D8800C33B92 /* ViewController.h */,
 				7CBF07D715AE0D8800C33B92 /* ViewController.m */,
+				7C3884B8161A66370095244A /* HelpViewController.h */,
+				7C3884B9161A66370095244A /* HelpViewController.m */,
 				7CD1953F15FA9C0C00519A01 /* ServiceManager.h */,
 				7CD1954015FA9C0C00519A01 /* ServiceManager.m */,
 				7CD1953C15FA9BB100519A01 /* Data Model */,
@@ -173,6 +186,10 @@
 				7C5C6F951609510E00A7C615 /* icon-72@2x.png */,
 				7C112ABF15FE98A900A5AB39 /* locate.png */,
 				7C112AC015FE98A900A5AB39 /* locate@2x.png */,
+				7C3884AF161A54810095244A /* pin.png */,
+				7C3884B0161A54810095244A /* pin@2x.png */,
+				7C3884B4161A55F80095244A /* refresh.png */,
+				7C3884B5161A55F80095244A /* refresh@2x.png */,
 				7C257A3115FFEFD200B62615 /* switch.png */,
 				7C257A3215FFEFD200B62615 /* switch@2x.png */,
 				7CD1953515FA7F7300519A01 /* annotation.png */,
@@ -282,6 +299,10 @@
 				7C88D76F1601452300E45147 /* Default-568h@2x.png in Resources */,
 				7C5C6F941609502F00A7C615 /* icon-72.png in Resources */,
 				7C5C6F961609510E00A7C615 /* icon-72@2x.png in Resources */,
+				7C3884B1161A54810095244A /* pin.png in Resources */,
+				7C3884B2161A54810095244A /* pin@2x.png in Resources */,
+				7C3884B6161A55F80095244A /* refresh.png in Resources */,
+				7C3884B7161A55F80095244A /* refresh@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +325,7 @@
 				7CD1953B15FA81BB00519A01 /* GRAnnotationView.m in Sources */,
 				7CD1954115FA9C0C00519A01 /* ServiceManager.m in Sources */,
 				7CD1954415FA9EAB00519A01 /* NSDictionary+Utilities.m in Sources */,
+				7C3884BA161A66370095244A /* HelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
