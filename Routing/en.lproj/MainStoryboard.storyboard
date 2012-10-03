@@ -34,12 +34,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Powered By Google" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc8-Ek-BJb">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="DCZ-aq-oDI"/>
-                                    <constraint firstAttribute="width" constant="152" id="Mjs-sI-kQk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Routing Info Provided By Google" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc8-Ek-BJb">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,7 +62,7 @@
                             <constraint firstAttribute="trailing" secondItem="f5h-AQ-yeE" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7BZ-2C-0KJ"/>
                             <constraint firstItem="f5h-AQ-yeE" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="HS9-nD-tYn"/>
                             <constraint firstItem="0WU-Yp-qwa" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="O0C-zA-Bxl"/>
-                            <constraint firstAttribute="bottom" secondItem="lc8-Ek-BJb" secondAttribute="bottom" constant="12" id="cwd-WW-DC6"/>
+                            <constraint firstItem="lc8-Ek-BJb" firstAttribute="centerY" secondItem="1Hw-sl-s3x" secondAttribute="centerY" type="default" id="ccS-Zz-rr6"/>
                             <constraint firstItem="1Hw-sl-s3x" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="ey5-75-NMu"/>
                             <constraint firstItem="1Hw-sl-s3x" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="gFM-21-t3K"/>
                             <constraint firstItem="0WU-Yp-qwa" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="nbf-KP-cxj"/>
